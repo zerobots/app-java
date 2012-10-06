@@ -29,7 +29,13 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="database" value="POSTGRESQL" />
+                <property name="generateDdl" value="true" />
             </bean>
+        </property>
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="hibernate.hbm2ddl.auto" value="update"/>
+            </map>
         </property>
     </bean>
 
