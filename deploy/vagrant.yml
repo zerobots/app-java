@@ -101,3 +101,8 @@
 
   - name: "Add .vagrant_shell to path"
     action: lineinfile name=$home/.bashrc regexp="source \.vagrant" insertafter=EOF line="source .vagrant"
+
+  - name: Try and prefetch App Dependencies 
+    action: shell $maven_home/bin/mvn compile; $maven_home/bin/mvn clean chdir=$app_home
+    ignore_errors: true
+

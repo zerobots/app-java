@@ -16,7 +16,7 @@ Vagrant::Config.run do |config|
   config.vm.customize ["modifyvm", :id, "--cpus", "1"]
 
   # The rails server port
-  config.vm.forward_port 8080, 7070
+  config.vm.forward_port 8080, 8080
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "vagrant.yml"
