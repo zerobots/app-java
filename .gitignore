@@ -1,5 +1,7 @@
 *.class
 .vagrant
+.idea
+*.iml
 
 # Package Files #
 *.jar

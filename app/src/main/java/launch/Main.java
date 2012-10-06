@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.CodeSource;
 import java.security.ProtectionDomain;
 
 import javax.servlet.ServletException;
@@ -22,12 +23,17 @@ public class Main {
         tomcat.setPort(8080);
 
         // Figure out the location of the war file
-        final ProtectionDomain domain = Main.class.getProtectionDomain();
-        final URL location = domain.getCodeSource().getLocation();
+        ProtectionDomain domain = Main.class.getProtectionDomain();
+        URL location = domain.getCodeSource().getLocation();
+        String webAppLocation = location.toURI().getPath();
+        if (!webAppLocation.endsWith(".war")) {
+            tomcat.setBaseDir("target/tomcat");
+            webAppLocation = "../../../src/main/webapp";
+        }
 
-        System.out.println("Using webapp at " + location.toExternalForm());
+        System.out.println("Using webapp at " + webAppLocation);
 
-        tomcat.addWebapp("/", location.toURI().getPath());
+        tomcat.addWebapp("/", webAppLocation);
         tomcat.start();
         tomcat.getServer().await();
     }
