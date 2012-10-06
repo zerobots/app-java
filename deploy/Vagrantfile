@@ -1,0 +1,25 @@
+require 'vagrant-ansible'
+
+Vagrant::Config.run do |config|
+  config.vm.box     = "CentOS 6.3 x86_64 minimal"
+  config.vm.box_url = "https://dl.dropbox.com/u/7225008/Vagrant/CentOS-6.3-x86_64-minimal.box"
+  
+  config.vm.share_folder "project", "/home/vagrant/project", ".."
+
+  config.vm.customize ["modifyvm", :id, "--memory", "512"]
+
+  # This is only necessary if your CPU does not support VT-x or you run virtualbox
+  # inside virtualbox
+  # config.vm.customize ["modifyvm", :id, "--vtxvpid", "off"]
+
+  # You can adjust this to the amount of CPUs your system has available
+  config.vm.customize ["modifyvm", :id, "--cpus", "1"]
+
+  # The rails server port
+  config.vm.forward_port 8080, 7070
+
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "vagrant.yml"
+    ansible.hosts = "vagrant"
+  end
+end
