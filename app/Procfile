@@ -1,1 +1,1 @@
-web: java -jar app.war
+web: java -javaagent:deploy/newrelic.jar -jar app.war
