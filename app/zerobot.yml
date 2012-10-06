@@ -1,0 +1,21 @@
+---
+properties:
+
+  - name: db_host
+    default: localhost
+    description: Host name or IP address of the database server for this app
+
+  - name: db_port
+    default: 5432
+    description: Port on which the database is listening (5432 is the Postgresql default)
+
+  - name: db_name
+    default: rails
+    description: Name of the database that this app uses
+
+  - name: db_username
+    default: postgres
+    description: The username the app uses when authenticating to the database
+
+  - name: db_password
+    description: The password the app uses when authenticating to the database
