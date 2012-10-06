@@ -1,19 +1,13 @@
 package launch;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import org.apache.catalina.LifecycleException;
+import org.apache.catalina.startup.Tomcat;
+
+import javax.servlet.ServletException;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.security.CodeSource;
 import java.security.ProtectionDomain;
-
-import javax.servlet.ServletException;
-
-import org.apache.catalina.LifecycleException;
-import org.apache.catalina.connector.Connector;
-import org.apache.catalina.startup.Tomcat;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 
 public class Main {
