@@ -10,18 +10,31 @@
   - name: "Setup new relic"
     action: template src=newrelic.yml dest=$app_home/deploy/newrelic.yml
 
-  - name: Install nginx
-    action: yum name=nginx
+  # - name: Install nginx
+  #   action: yum name=nginx
 
-  - name: Configure nginx
-    action: template src=nginx-default.conf dest=/etc/nginx/conf.d/default.conf
+  # - name: Configure nginx
+  #   action: template src=nginx-default.conf dest=/etc/nginx/conf.d/default.conf
+  #   notify:
+  #   - restart nginx
+
+  # - name: Ensure nginx is running
+  #   action: service name=nginx state=started
+
+  - name: Install apache
+    action: yum name=httpd
+
+  - name: Configure apache
+    action: template src=apache.conf dest=/etc/httpd/conf.d/zerobot.conf
     notify:
-    - restart nginx
+    - restart httpd
 
-  - name: Ensure nginx is running
-    action: service name=nginx state=started
+  - name: Ensure Apache is running
+    action: service name=httpd state=started
 
 
   handlers:
-  - name: restart nginx
-    action: service name=nginx state=restarted
+  # - name: restart nginx
+  #   action: service name=nginx state=restarted
+    - name: restart httpd
+      action: service name=httpd state=restarted
