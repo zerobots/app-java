@@ -20,6 +20,6 @@ properties:
   - name: db_password
     description: The password the app uses when authenticating to the database
 
-  - name: message
+  - name: meassage
     default: Hello zerobot
-    description: The message displayed on the welcome page
+    description: The welcome message to display

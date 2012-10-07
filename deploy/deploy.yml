@@ -7,6 +7,9 @@
 
   tasks:
 
+  - name: "Setup new relic"
+    action: template src=newrelic.yml dest=$app_home/deploy/newrelic.yml
+
   - name: Install nginx
     action: yum name=nginx
 
