@@ -9,8 +9,12 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-    <import resource="app-properties.xml"/>
-    <import resource="app-security.xml"/>
-    <import resource="app-db.xml"/>
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="WEB-INF/app.properties"/>
+        <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
+        <property name="searchSystemEnvironment" value="true"/>
+    </bean>
+
+    <context:component-scan base-package="app"/>
 
 </beans>
