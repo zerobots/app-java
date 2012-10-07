@@ -15,7 +15,7 @@
     db_name: java
 
     count_matching_users: psql -U postgres -tA -c "SELECT count(1) FROM pg_roles where rolname='$db_username';"
-    create_user: psql -U postgres -c "CREATE ROLE $db_username WITH LOGIN PASSWORD '$db_password';"
+    create_user: psql -U postgres -c "CREATE ROLE $db_username WITH SUPERUSER CREATEDB CREATEROLE LOGIN PASSWORD '$db_password';"
     count_matching_databases: psql -U postgres -tA -c "SELECT count(1) FROM pg_database WHERE datname = '$db_name';"
     create_database: psql -U postgres -c "CREATE DATABASE $db_name WITH OWNER = $db_username;"
 
@@ -70,6 +70,10 @@
     ## Install Maven
   - name: Download Maven
     action: get_url dest=$download_dir/apache-maven-3.0.4-bin.tar.gz url=http://apache.mirror.uber.com.au/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz owner=vagrant
+    ignore_errors: true
+
+  - name: Download Maven 2nd attempt
+    action: get_url dest=$download_dir/apache-maven-3.0.4-bin.tar.gz url=http://mirror.overthewire.com.au/pub/apache/maven/maven-3/3.0.4/binaries/apache-maven-3.0.4-bin.tar.gz owner=vagrant
 
   - name: Unzip Maven
     action: command tar xzf apache-maven-3.0.4-bin.tar.gz chdir=$download_dir creates=$download_dir/apache-maven-3.0.4
