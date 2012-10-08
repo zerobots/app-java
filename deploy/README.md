@@ -1,13 +1,12 @@
 Starting Development on your local machine
 =========
 
-To setup an isolated development environment with all of dependencies
-setup you may use vagrant:
+You may use vagrant to setup an isolated development environment:
 
 Vagrant Dependencies
 ----
 * VirtualBox: https://www.virtualbox.org/wiki/Downloads
-  * Version 4.1.18 (The most recent version gives a warning)
+  * Recommended Version: 4.1.18
 * Vagrant: http://downloads.vagrantup.com/tags/v1.0.5
   * add the ansible plugin: `[me@deploy]$ vagrant gem install vagrant-ansible`
 
